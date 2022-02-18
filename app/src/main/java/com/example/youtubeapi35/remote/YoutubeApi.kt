@@ -12,5 +12,13 @@ interface YoutubeApi {
         @Query("part") part: String,
         @Query("channelId") channelId: String,
         @Query("key") apiKey: String,
+):Call<Playlist>
+
+    @GET("playlistsItems")
+    fun getPlaylistsVideos(
+        @Query("part") part: String,
+        @Query("playlistId") channelId: String,
+        @Query("key") apiKey: String,
     ):Call<Playlist>
+
 }
