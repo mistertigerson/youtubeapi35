@@ -15,7 +15,11 @@ class PlaylistViewModel : BaseViewModel() {
 
     private val youtubeApi = RetrofitClient.create()
 
-    fun getPlayList(): LiveData<Playlist> {
+    fun getPlayListVideo(id: String): LiveData<Playlist> {
+        return createPlayListVideo(id)
+    }
+
+    fun getPlayListVideo(): LiveData<Playlist> {
         return createPlayList()
     }
 
@@ -26,7 +30,27 @@ class PlaylistViewModel : BaseViewModel() {
         youtubeApi.getPlaylists(Constants.PART, Constants.CHANNEL_ID, API_KEY)
             .enqueue(object : Callback<Playlist> {
                 override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
-                    if (response.isSuccessful && response.body()!=null){
+                    if (response.isSuccessful && response.body() != null) {
+                        data.value = response.body()
+                    }
+                }
+
+                override fun onFailure(call: Call<Playlist>, t: Throwable) {
+                    print(t.stackTrace)
+                }
+
+            })
+        return data
+    }
+
+    private fun createPlayListVideo(id: String): LiveData<Playlist> {
+
+        val data = MutableLiveData<Playlist>()
+
+        youtubeApi.getPlaylistsVideos(Constants.PART, id, API_KEY)
+            .enqueue(object : Callback<Playlist> {
+                override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
+                    if (response.isSuccessful && response.body() != null) {
                         data.value = response.body()
                     }
                 }
