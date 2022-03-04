@@ -5,4 +5,6 @@
     <string name="back_btn_text" />
     <string name="toolbar_title_playlist" />
     <string name="video_series">video series</string>
+    <string name="back">Back</string>
+    <string name="playlist">Playlist</string>
 </resources>

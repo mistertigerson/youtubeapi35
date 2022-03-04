@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".ui.playlist.player.PlayerActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.playlist.playlist_videos.PlaylistVideosActivity"
             android:exported="false" />
         <activity

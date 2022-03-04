@@ -31,15 +31,17 @@ class PlaylistAdapter (private val list: List<Items>, private val clickOnPlaylis
         @SuppressLint("SetTextI18n")
         fun onBind(items: Items) {
             binding.playlistPhoto.loadImage(
-                items.snippet?.thumbnails?.default?.url.toString()
+                items.snippet?.thumbnails?.high?.url.toString()
             )
             binding.playlistTitle.text = items.snippet?.title
             binding.playlistCountVideos.text =
                 items.contentDetails?.itemCount.toString() + " " + itemView.context.getString(
                     R.string.video_series
                 )
+
             binding.root.setOnClickListener {
-                clickOnPlaylist.onClick(items.id, adapterPosition)
+                clickOnPlaylist
+                    clickOnPlaylist.onClick(items.id, items.contentDetails?.itemCount!!)
             }
         }
     }

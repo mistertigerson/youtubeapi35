@@ -31,6 +31,7 @@ data class Snippet(
     var categoryId: String?,
     var liveBroadcastContent: String?,
     var localized: Localized?,
+    var resourceId: ResourceId,
     //Playlist
     val defaultLanguage: String?,
 )
@@ -59,6 +60,11 @@ data class Items (
     var contentDetails: ContentDetails?,
     //Playlist
     val status: Status?
+)
+
+data class ResourceId(
+    val kind: String?,
+    val videoId: String
 )
 
 data class Status(

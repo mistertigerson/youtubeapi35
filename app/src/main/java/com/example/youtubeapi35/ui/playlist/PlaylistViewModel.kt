@@ -27,7 +27,7 @@ class PlaylistViewModel : BaseViewModel() {
 
         val data = MutableLiveData<Playlist>()
 
-        youtubeApi.getPlaylists(Constants.PART, Constants.CHANNEL_ID, API_KEY)
+        youtubeApi.getPlaylists(Constants.PART, Constants.CHANNEL_ID, API_KEY, Constants.MAX_Results)
             .enqueue(object : Callback<Playlist> {
                 override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
                     if (response.isSuccessful && response.body() != null) {
@@ -47,7 +47,7 @@ class PlaylistViewModel : BaseViewModel() {
 
         val data = MutableLiveData<Playlist>()
 
-        youtubeApi.getPlaylistsVideos(Constants.PART, id, API_KEY)
+        youtubeApi.getPlaylistsVideos(Constants.PART, id, API_KEY, Constants.MAX_Results)
             .enqueue(object : Callback<Playlist> {
                 override fun onResponse(call: Call<Playlist>, response: Response<Playlist>) {
                     if (response.isSuccessful && response.body() != null) {

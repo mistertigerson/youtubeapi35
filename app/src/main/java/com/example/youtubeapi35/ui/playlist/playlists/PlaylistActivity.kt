@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
 import com.example.youtubeapi35.BuildConfig.BASE_URl
+import com.example.youtubeapi35.`object`.Constants
 import com.example.youtubeapi35.base.BaseActivity
 import com.example.youtubeapi35.databinding.ActivityPlaylistBinding
 import com.example.youtubeapi35.ui.playlist.PlaylistViewModel
@@ -25,9 +26,11 @@ class PlaylistActivity : BaseActivity<PlaylistViewModel, ActivityPlaylistBinding
             Log.e(TAG, "initViewModel: " + it.kind.toString())
             binding.recycler.adapter =
                 PlaylistAdapter(it.items!!, object : PlaylistAdapter.ClickOnPlaylist {
-                    override fun onClick(id: String?, position: Int) {
+                    override fun onClick(id: String?, count: Int) {
                         Intent(this@PlaylistActivity, PlaylistVideosActivity::class.java).apply {
-                            putExtra(NAME, id)
+                            putExtra(Constants.NAME, id)
+                            putExtra(Constants.COUNT, count)
+                            Log.e(TAG, "tittle: ${it.contentDetails?.caption.toString()}")
                             Log.e("TAG", "playlist: $id")
                             startActivity(this)
                         }
@@ -50,5 +53,11 @@ class PlaylistActivity : BaseActivity<PlaylistViewModel, ActivityPlaylistBinding
 
 }
 
-const val
-        NAME: String = "key"
+
+
+
+
+
+
+
+
